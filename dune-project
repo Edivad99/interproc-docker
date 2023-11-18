@@ -8,11 +8,11 @@
 (generate_opam_files true)
 
 (source
- (github jogiet/interproc))
+ (github Edivad99/interproc-docker))
 
 (authors "Bertrand Jeannet")
 
-(maintainers "Josselin Giet")
+(maintainers "Davide Albiero" "Damiano Mason" "Josselin Giet")
 
 (license LGPL)
 

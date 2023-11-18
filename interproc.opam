@@ -4,14 +4,14 @@ version: "dev"
 synopsis: "Interprocedural analyzer"
 description:
   "Interproc is an interprocedural analyzer for a small imperative language with (recursive) procedure calls. It infers invariants on the numerical variables of analyzed program."
-maintainer: ["Josselin Giet"]
+maintainer: ["Davide Albiero" "Damiano Mason" "Josselin Giet"]
 authors: ["Bertrand Jeannet"]
 license: "LGPL"
 tags: ["Abstract interpretation" "interprocedural analysis"]
-homepage: "https://github.com/jogiet/interproc"
+homepage: "https://github.com/Edivad99/interproc-docker"
 doc:
   "https://pop-art.inrialpes.fr/people/bjeannet/bjeannet-forge/interproc/index.html"
-bug-reports: "https://github.com/jogiet/interproc/issues"
+bug-reports: "https://github.com/Edivad99/interproc-docker/issues"
 depends: [
   "ocaml"
   "dune" {>= "3.7"}
@@ -36,4 +36,4 @@ build: [
     "@doc" {with-doc}
   ]
 ]
-dev-repo: "git+https://github.com/jogiet/interproc.git"
+dev-repo: "git+https://github.com/Edivad99/interproc-docker.git"
