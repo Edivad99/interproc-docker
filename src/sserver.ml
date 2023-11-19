@@ -95,7 +95,7 @@ let main() =
 	List.iter (function s -> Printf.printf "%s\r\n" s) !thisheader;
 	Printf.printf "Content-length: %i\r\n" len;
 	print_string "\r\n";
-	let c = String.create len in
+	let c = Bytes.create len in
 	really_input f c 0 len;
 	print_string (Bytes.to_string c);
       end

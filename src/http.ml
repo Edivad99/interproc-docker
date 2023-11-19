@@ -108,7 +108,7 @@ type transfert_encoding =
 (* HTTP header for HTML page
 *)
 let http_header 
-    ?(o=Pervasives.stdout)       (* destination *)
+    ?(o=Stdlib.stdout)       (* destination *)
     ?(nph=false)      (* Non-parsed header *)
     ?status           (* http status message number (200 OK) *)
     ?(mime=MimeHTML)  (* mime type *)
@@ -202,7 +202,7 @@ let http_header
 (* HTTP header for redirection
 *)
 let http_redirect_header 
-    ?(o=Pervasives.stdout)       (* destination *)
+    ?(o=Stdlib.stdout)       (* destination *)
     ?(nph=false)      (* Non-parsed header *)
     ?status           (* http status message number (302 Found) *)
     ?target           (* target window *)
@@ -235,7 +235,7 @@ let http_redirect_header
    HTTP header
 *)
 let http_error 
-    ?(o=Pervasives.stdout)         (* destination *)
+    ?(o=Stdlib.stdout)         (* destination *)
     ?(nph=false)        (* Non-parsed header *)
     ?(status=500)       (* the status code, default is 500 *)
     ?mailto             (* a friendly mail adress where to repport error *)
@@ -260,7 +260,7 @@ let http_error
    Build the correct header and use the specified transfert encoding
 *)
 let http_send_file
-    ?(o=Pervasives.stdout)         (* destination *)
+    ?(o=Stdlib.stdout)         (* destination *)
     ?(nph=false)        (* Non-parsed header *)
     ?(mime=MimeBinary)  (* mime type, default is MimeBinary which is neutral *)
     ?charset            (* character set *)
@@ -277,7 +277,7 @@ let http_send_file
   http_header ~o:o ~nph:nph 
     ~mime:mime ?charset:charset (* ?transfert:transfert *) ~length:l 
     ?date:date ?expires:expires ?last_modified:last_modified ();
-  let s = String.create l in
+  let s = Bytes.create l in
   really_input ff s 0 l;
   output_string o (Bytes.to_string s);
   Unix.close f

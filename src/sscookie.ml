@@ -19,12 +19,11 @@ let build_upper_string n =
   let ch = [|'A';'B';'C';'D';'E';'F';'G';'H';'I';'J';'K';'L';'M';
 	     'N';'O';'P';'Q';'R';'S';'T';'U';'V';'W';'X';'Y';'Z';
              '1';'2';'3';'4';'5';'6' |]
-  and s = String.create n
+  and s = Bytes.to_string (Bytes.create n)
   in
   Random.self_init ();
-  for i=0 to (n-1) do
-    s.[i] <- ch.(((Random.bits ()) lsr 5) land 31)
-  done;
+  String.map (fun c ->
+    ch.(((Random.bits ()) lsr 5) land 31))
   s
 
 
@@ -156,11 +155,11 @@ let create_cookie
 
   (* create the temp file *)
   let o = open_out_gen [Open_wronly;Open_binary;Open_creat;Open_trunc]
-      0o600  (build_filename dir (Bytes.to_string filename))
+      0o600  (build_filename dir filename)
   in
   
   (* headers *)
-  Printf.fprintf o "Key: %s\r\n" (Bytes.to_string key);
+  Printf.fprintf o "Key: %s\r\n" key;
   Printf.fprintf o "Content-type: %s\r\n" (Http.string_of_mime mime);
   Printf.fprintf o "Date: %s\r\n" rdate;
   Printf.fprintf o "Expires: %s\r\n" rexpires;
@@ -173,7 +172,7 @@ let create_cookie
   Unix.close lock;
   
   (* build URL *)
-  (o,"sserver?dir="^dir^"&name="^(Bytes.to_string filename)^"&key="^(Bytes.to_string key))
+  (o,"sserver?dir="^dir^"&name="^filename^"&key="^key)
 				      
 
 

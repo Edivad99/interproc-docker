@@ -186,9 +186,12 @@ let get_cgi_content_type () =
    by uppercasing, changing - into _ and appending HTTP_
 *)
 let get_cgi_header s =
-  let ss = "HTTP_"^s
+  let ss = "HTTP_"^s in
+  let ss = String.map (fun c -> 
+    if c='-' then '_'
+    else Char.uppercase_ascii c
+    ) ss
   in
-  String.map (function x -> if x = '-' then '_' else Char.uppercase_ascii x) ss;
   try
     Some (Sys.getenv ss)
   with Not_found -> None
