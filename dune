@@ -6,6 +6,14 @@
  (modules interproc)
  (libraries menhirLib apron.polkaMPQ apron.boxMPQ apron.octMPQ apron.ppl apron.polkaGrid camllib fixpoint interproc_lib))
 
+(executable
+ (name interprocweb)
+ (public_name interprocweb)
+ (flags -w +a-4-6-7-9-27-29-32..42-44-45-48-50-60 )
+ ; (ocamlopt_flags -cc "g++" -ccopt "-static")
+ (modules interprocweb)
+ (libraries menhirLib apron.polkaMPQ apron.boxMPQ apron.octMPQ apron.ppl apron.polkaGrid camllib fixpoint interproc_lib))
+
 ; (executable
 ;  (name interprocjs)
 ;  (modes byte)

@@ -2,9 +2,9 @@
 (library
   (name interproc_lib)
   (wrapped false)
-  (modules frontend boolexpr equation options pSpl_syn solving solvingPolicy spl_lex spl_syn spl_yacc syn2equation)
+  (modules frontend boolexpr equation options pSpl_syn solving solvingPolicy spl_lex spl_syn spl_yacc syn2equation html http cgi date sscookie sserver)
   (flags -w +a-4-6-7-9-27-29-32..42-44-45-48-50-60 )
-  (libraries menhirLib apron apron.polkaMPQ apron.boxMPQ apron.octMPQ apron.ppl apron.polkaGrid camllib fixpoint))
+  (libraries menhirLib apron apron.polkaMPQ apron.boxMPQ apron.octMPQ apron.ppl apron.polkaGrid camllib fixpoint unix))
 
 (menhir
   (flags --explain --table)
