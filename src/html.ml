@@ -86,18 +86,15 @@ let html_begin
     title             (* title string (not escaped) *)
     =
 
-  Printf.fprintf out "<!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML//EN\">\r\n";
+  Printf.fprintf out "<!DOCTYPE html>\r\n";
   
   (match lang with  
     None   -> Printf.fprintf out "<html>\r\n"
   | Some s -> Printf.fprintf out "<html lang=\"%s\">\r\n" (escape_html s));
-  
+
   Printf.fprintf out "<head><title>%s</title>\r\n" (escape_html title);
-  
-  (match lang with  
-    None   -> ()
-  | Some s -> Printf.fprintf out "<meta http-equiv=\"Content-Langage\" content=\"%s\">\r\n"
-	(escape_html s));
+  Printf.fprintf out "<meta charset=\"UTF-8\">\r\n";
+  Printf.fprintf out "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n";
   
   (match refresh with  
     None   -> ()

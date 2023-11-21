@@ -190,7 +190,7 @@ let main () =
 
   Html.html_begin
     ~lang:"en"
-    ~author:"Antoine Min&eacute, Bertrand Jeannet, Davide Albiero, Damiano Mason"
+    ~author:"Antoine Miné, Bertrand Jeannet, Davide Albiero, Damiano Mason"
     ~desc:"\
 CGI interface to the Interproc static analyzer, \
 illustrating the use of the APRON Abstract Domain Library"
@@ -198,7 +198,7 @@ illustrating the use of the APRON Abstract Domain Library"
   ;
   mainpage();
   Html.html_end
-    ~author:"Antoine Min&eacute, Bertrand Jeannet, Davide Albiero, Damiano Mason"
+    ~author:"Antoine Miné, Bertrand Jeannet, Davide Albiero, Damiano Mason"
     ()
   ;
   ()
