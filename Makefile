@@ -3,6 +3,8 @@ all: build
 
 build:
 	@dune build
+	chmod +x _build/default/interproc.exe
+	chmod +x _build/default/interprocweb.exe
 	@ln -sf _build/default/interproc.exe interproc
 	@ln -sf _build/default/interprocweb.exe interprocweb
 
