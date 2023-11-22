@@ -13,5 +13,3 @@
  (ocamlopt_flags -cc "g++" -ccopt "-static")
  (modules interprocweb)
  (libraries menhirLib apron.polkaMPQ apron.boxMPQ apron.octMPQ apron.ppl apron.polkaGrid camllib fixpoint interproc_lib))
-
-
