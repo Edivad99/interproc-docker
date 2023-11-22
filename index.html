@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interproc Analyzer</title>
+</head>
+
+<body>
+  <h1>The Interproc Analyzer</h1>
+  <p>
+    This is a web interface to the
+    <a href="https://pop-art.inrialpes.fr/people/bjeannet/bjeannet-forge/interproc/index.html">Interproc</a>
+    analyzer connected to the <a href="http://apron.cri.ensmp.fr/library/">APRON Abstract Domain Library</a> and the
+    <a href="https://pop-art.inrialpes.fr/people/bjeannet/bjeannet-forge/fixpoint/index.html">Fixpoint Solver
+      Library</a>,
+    whose goal is to demonstrate the features of the APRON library and, to a less extent, of the Analyzer fixpoint
+    engine, in the static analysis field.
+  </p>
+  <form action="cgi-bin/interprocweb.exe" method="post" enctype="multipart/form-data">
+    <h2>Arguments</h2>
+    <p>Please type a program, upload a file or choose one the provided examples:</p>
+    <input type="file" name="file" accept=".txt">
+    <br>
+    <label for="example_lbl">Examples:</label>
+    <select id="example_lbl" name="example">
+      <option value="none" selected="">user-supplied</option>
+      <option value="examples/incr.txt">Incr</option>
+      <option value="examples/ackerman.txt">Ackerman</option>
+      <option value="examples/fact.txt">Factorial</option>
+      <option value="examples/maccarthy91.txt">Mac Carthy 91</option>
+      <option value="examples/heapsort.txt">Heap Sort</option>
+      <option value="examples/symmetricalstairs.txt">Symmetrical Stairs</option>
+      <option value="examples/numerical.txt">Numerical example</option>
+      <option value="examples/numerical2.txt">Numerical example 2</option>
+    </select>
+    <br>
+    <br>
+    <textarea name="text" rows="30" cols="100" placeholder="type your program here!"></textarea>
+    <br>
+    <table style="border: none;">
+      <tr>
+        <td><label for="abstraction_lbl">Numerical Abstract Domain:</label></td>
+        <td>
+          <select id="abstraction_lbl" name="abstraction">
+            <option value="none">Choose an Abstract Domain:</option>
+            <option value="box">box</option>
+            <option value="boxpolicy">box with policy iteration</option>
+            <option value="octagon">octagon</option>
+            <option value="polka" selected>convex polyhedra (polka)</option>
+            <option value="ppl">convex polyhedra (PPL)</option>
+            <option value="polkastrict">strict convex polyhedra (polka)</option>
+            <option value="pplstrict">strict convex polyhedra (PPL)</option>
+            <option value="polkaeq">linear equalities (polka)</option>
+            <option value="pplgrid">linear congruences (PPL)</option>
+            <option value="polkagrid">convex polyhedra + linear congruences</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td><label for="analysis_lbl">Kind of Analysis:</label></td>
+        <td>
+          <input type="text" id="analysis_lbl" name="analysis" value="f" size="6" maxlength="6"/> (sequence of forward and/or backward analysis)
+        </td>
+      <tr>
+      <tr>
+        <td><label for="debug_lbl">Debugging level (0 to 6):</label></td>
+        <td><input type="number" id="debug_lbl" name="debug" min="0" max="6" value="0"></td>
+      </tr>
+    </table>
+    <br>
+    <fieldset style="width: fit-content;">
+      <legend>Iterations/Widening options:</legend>
+      <table style="border: none;">
+        <tr>
+          <td><label for="guided_lbl">Guided iterations:</label></td>
+          <td><input type="checkbox" id="guided_lbl" name="guided" value="on" /></td>
+        </tr>
+        <tr>
+          <td><label for="widening_start_lbl">Widening delay:</label></td>
+          <td><input type="number" id="widening_start_lbl" name="widening_start" min="0" max="99" value="1" /></td>
+        <tr>
+        <tr>
+          <td><label for="descending_lbl">Descending steps:</label></td>
+          <td><input type="number" id="descending_lbl" name="descending" min="0" max="99" value="2" /></td>
+        </tr>
+      </table>
+    </fieldset>
+    <br>
+    <br>
+    <div>
+      Hit the OK button to proceed: <input type="submit" value="OK">
+      <input type="reset" value="Reset">
+    </div>
+  </form>
+  <h2>
+    <a href="http://pop-art.inrialpes.fr/people/bjeannet/bjeannet-forge/interproc/manual_syntax.html">
+      Simple language syntax
+    </a>
+  </h2>
+  <p>
+    Here are some program examples:
+    <a href="examples/incr.txt">incr</a>
+    <a href="examples/ackerman.txt">ackerman</a>
+    <a href="examples/fact.txt">fact</a>
+    <a href="examples/numerical.txt">numerical</a>
+    <a href="examples/numerical2.txt">numerical2</a>
+    <a href="examples/maccarthy91.txt">maccarthy91</a>
+    <a href="examples/heapsort.txt">heapsort</a>
+    <a href="examples/symmetricalstairs.txt">symmetricalstairs</a>
+  </p>
+  <h2>Results</h2>
+  <p>The analysis computes an invariant at each program point.</p>
+  <h2>Informations</h2>
+  <p>
+    The Interproc is freely available. It is written in C, with a OCaml binding.
+  </p>
+  <p>This CGI-WEB interface is written in OCaml using the
+    <a href="http://www.eleves.ens.fr/home/mine/ocamlhtml/">OCamlHtml library</a>, freely available
+  </p>
+  <p>The compilation of Interproc together with all the libraries and the web interface was done by Davide Albiero and Damiano Mason.</p>
+  <p>The GitHub repository is available at this <a href="https://github.com/Edivad99/interproc-docker">link</a>.</p>
+  <hr>
+  <address>
+    Antoine Miné, Bertrand Jeannet, Davide Albiero, Damiano Mason
+  </address>
+</body>
+</html>

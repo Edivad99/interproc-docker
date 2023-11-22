@@ -1,0 +1,9 @@
+(library
+  (name camllib)
+  (public_name camllib)
+  (modules Print Sette PSette Mappe PMappe Hashhe PHashhe SetteI SetteS MappeI
+    MappeS HashheI HashheIB HashheS DMappe PDMappe DHashhe PDHashhe SetList
+    MultiSetList Ilist FGraph1 FGraph SHGraph PSHGraph Symbol Union Statistic
+    Time rational Parse)
+  (flags -w +a-4-6-7-9-27-29-32..42-44-45-48-50-60))
+
