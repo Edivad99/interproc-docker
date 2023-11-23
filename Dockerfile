@@ -44,8 +44,13 @@ LABEL author="Davide Albiero, Damiano Mason"
 WORKDIR /usr/local/apache2
 COPY --from=build /home/opam/interproc/_build/default/interprocweb.exe /usr/local/apache2/cgi-bin/interproc
 COPY interproc/examples/* /usr/local/apache2/cgi-bin/examples/
-COPY index.html /usr/local/apache2/htdocs/index.html
+COPY index.html /usr/local/apache2/htdocs/interproc.html
+RUN rm htdocs/index.html
 
-CMD httpd-foreground -c "LoadModule cgid_module modules/mod_cgid.so"
+RUN echo "LoadModule cgid_module modules/mod_cgid.so" >> conf/httpd.conf
+RUN echo "LoadModule cgid_module modules/mod_rewrite.so" >> conf/httpd.conf
+RUN echo "DirectoryIndex interproc.html" >> conf/httpd.conf
+
+CMD httpd-foreground
 
 EXPOSE 80
