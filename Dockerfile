@@ -20,12 +20,12 @@ RUN cd ppl-1.2 && \
   sudo make install && \
   make -j$(nproc) installcheck
 
+RUN opam install conf-ppl
+RUN opam install apron
+
 COPY camllib /home/opam/camllib
 COPY fixpoint /home/opam/fixpoint
 COPY interproc /home/opam/interproc
-
-RUN opam install conf-ppl
-RUN opam install apron
 
 RUN opam pin add camllib ./camllib
 RUN opam pin add fixpoint ./fixpoint

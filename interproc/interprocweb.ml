@@ -55,6 +55,7 @@ let analyze (progtext:string) =
   let e = Date.get_date () in
   Date.add_minutes e 15;
   Html.h1 "Analysis Result";
+  Html.link ".." "Go back";
 
   let buffer = Buffer.create (String.length progtext) in
   let (output:Format.formatter) = Format.formatter_of_buffer buffer in

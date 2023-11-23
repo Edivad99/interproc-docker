@@ -223,13 +223,12 @@ let ul ?(out=stdout) ?(numbered=false) ?style s =
 (* build a <a href="...">...</a> string
    the URL is HTML escaped but not URL escaped
 *)
-let link ?style url label =
-  Printf.sprintf 
+let link ?(out=stdout) ?style url label =
+  Printf.fprintf out
     "<a href=\"%s\"%s>%s</a>"
     (escape_html url)
     (match style with None->"" | Some s->(" class=\""^(escape_html s)^"\""))
-    label
-    
+    label;
 
 (* emit a client-side image map 
 *)

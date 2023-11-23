@@ -105,11 +105,11 @@ val ul: ?out:out_channel -> ?numbered:bool -> ?style:string
 (* build a <a href="...">...</a> string
    the url HTML escaped but not URL escaped
 *)
-val link: 
-    ?style:string
+val link:
+   ?out:out_channel -> ?style:string
  -> string         (* url *) 
  -> string         (* label *) 
- -> string
+ -> unit
     
 
 (* emit a client-side image map *)
