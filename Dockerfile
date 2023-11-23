@@ -1,6 +1,5 @@
 FROM ocaml/opam:alpine-ocaml-4.13-flambda AS build
-LABEL author="Davide Albiero"
-LABEL author="Damiano Mason"
+LABEL author="Davide Albiero, Damiano Mason"
 
 WORKDIR /home/opam
 
@@ -40,11 +39,10 @@ RUN eval $(opam env) && \
 
 
 FROM httpd:2.4.58-alpine AS server
-LABEL author="Davide Albiero"
-LABEL author="Damiano Mason"
+LABEL author="Davide Albiero, Damiano Mason"
 
 WORKDIR /usr/local/apache2
-COPY --from=build /home/opam/interproc/_build/default/interprocweb.exe /usr/local/apache2/cgi-bin/interprocweb.exe
+COPY --from=build /home/opam/interproc/_build/default/interprocweb.exe /usr/local/apache2/cgi-bin/interproc
 COPY interproc/examples/* /usr/local/apache2/cgi-bin/examples/
 COPY index.html /usr/local/apache2/htdocs/index.html
 
