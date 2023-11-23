@@ -1,4 +1,4 @@
-FROM ocaml/opam:alpine-ocaml-4.13-flambda
+FROM ocaml/opam:alpine-ocaml-4.13-flambda AS build
 LABEL author="Davide Albiero"
 LABEL author="Damiano Mason"
 
@@ -38,4 +38,16 @@ RUN opam depext -i interproc
 RUN eval $(opam env) && \
   sudo make all
 
-CMD ["interproc", "examples/fibonacci.txt", "-domain", "box"]
+
+FROM httpd:2.4.58-alpine AS server
+LABEL author="Davide Albiero"
+LABEL author="Damiano Mason"
+
+WORKDIR /usr/local/apache2
+COPY --from=build /home/opam/interproc/_build/default/interprocweb.exe /usr/local/apache2/cgi-bin/interprocweb.exe
+COPY interproc/examples/* /usr/local/apache2/cgi-bin/examples/
+COPY index.html /usr/local/apache2/htdocs/index.html
+
+CMD httpd-foreground -c "LoadModule cgid_module modules/mod_cgid.so"
+
+EXPOSE 80
