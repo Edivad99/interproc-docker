@@ -20,4 +20,4 @@ docker stop interproc
 # Delete the container
 docker rm -f interproc
 ```
-
+Once done, you can connect to Interproc by typing on your browser `localhost:8080` or by clicking [here](http://localhost:8080).
