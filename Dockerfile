@@ -44,6 +44,7 @@ LABEL author="Davide Albiero, Damiano Mason"
 WORKDIR /usr/local/apache2
 COPY --from=build /home/opam/interproc/_build/default/interprocweb.exe /usr/local/apache2/cgi-bin/interproc
 COPY interproc/examples/* /usr/local/apache2/cgi-bin/examples/
+COPY interproc/examples/* /usr/local/apache2/htdocs/examples/
 COPY index.html /usr/local/apache2/htdocs/interproc.html
 RUN rm htdocs/index.html
 
