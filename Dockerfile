@@ -49,8 +49,9 @@ COPY index.html /usr/local/apache2/htdocs/interproc.html
 RUN rm htdocs/index.html
 
 RUN echo 'Alias "/examples/" "cgi-bin/examples/"' >> conf/httpd.conf
-RUN echo '<Directory "/cgi-bin/examples">' >> conf/httpd.conf
-RUN echo "    Require all granted" >> conf/httpd.conf
+RUN echo '<Directory "/usr/local/apache2/cgi-bin/examples">' >> conf/httpd.conf
+RUN echo "    SetHandler default-handler" >> conf/httpd.conf
+RUN echo "    AllowOverride None" >> conf/httpd.conf
 RUN echo "</Directory>" >> conf/httpd.conf
 RUN echo "LoadModule cgid_module modules/mod_cgid.so" >> conf/httpd.conf
 RUN echo "LoadModule cgid_module modules/mod_rewrite.so" >> conf/httpd.conf
