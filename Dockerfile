@@ -34,8 +34,8 @@ WORKDIR /home/opam/interproc
 
 RUN opam depext -i interproc
 
-RUN eval $(opam env) && \
-  sudo make all
+RUN sudo chown -R opam:opam /home/opam/interproc
+RUN opam exec -- make all
 
 
 FROM httpd:2.4.58-alpine AS server
@@ -57,6 +57,6 @@ RUN echo "LoadModule cgid_module modules/mod_cgid.so" >> conf/httpd.conf
 RUN echo "LoadModule cgid_module modules/mod_rewrite.so" >> conf/httpd.conf
 RUN echo "DirectoryIndex interproc.html" >> conf/httpd.conf
 
-CMD httpd-foreground
+CMD ["httpd-foreground"]
 
 EXPOSE 80
