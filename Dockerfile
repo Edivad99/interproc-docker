@@ -4,7 +4,7 @@ LABEL author="Davide Albiero, Damiano Mason"
 WORKDIR /home/opam
 
 # PPL
-RUN wget https://www.bugseng.com/external/ppl/download/ftp/releases/1.2/ppl-1.2.tar.xz && \
+RUN wget https://support.bugseng.com/ppl/download/ftp/releases/1.2/ppl-1.2.tar.xz && \
   tar xfv ppl-1.2.tar.xz
 
 RUN sudo apk add m4 gmp-dev perl mpfr-dev --no-cache
